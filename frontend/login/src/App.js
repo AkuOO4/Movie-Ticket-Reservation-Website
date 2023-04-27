@@ -62,6 +62,8 @@ import { Login } from "./Login";
 import { Register } from "./Register";
 import   {NewRelease}   from "./NewRelease";
 
+
+
 function App() {
   const [currentform, setCurrentForm] = useState('Login');
 
@@ -72,7 +74,7 @@ function App() {
   return (
     <div className="App">
       {
-        currentform === "Login" ? 
+          currentform === "Login" ? 
           <Login onFormSwitch={toggleForm} onLogin={() => setCurrentForm('NewRelease')} /> 
           : currentform === "Register" ? 
           <Register onFormSwitch={toggleForm}/>
@@ -83,6 +85,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
 
 
 

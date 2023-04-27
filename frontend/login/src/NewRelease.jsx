@@ -404,10 +404,12 @@ const NewRelease = () => {
 export { NewRelease };*/
 
 
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import  Link  from 'react-bootstrap/Button';
 import './NewRelease.css';
 
 const NewRelease = () => {
@@ -462,6 +464,7 @@ const NewRelease = () => {
                   Release Date: {movie.release_date}
                 </Card.Text>
                 <Button variant="primary" onClick={() => handleViewDetails(movie)}>View Details</Button>
+                <Link to={`/SeatSelection/${movie.id}`} className="btn btn-primary ms-2">Book Tickets</Link>
               </Card.Body>
             </Card>
           </div>
@@ -472,6 +475,80 @@ const NewRelease = () => {
 };
 
 export { NewRelease };
+
+
+
+/*import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom'; // Import Link component from react-router-dom
+import './NewRelease.css';
+
+const NewRelease = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        const response = await axios.get(
+          'https://api.themoviedb.org/3/discover/movie',
+          {
+            params: {
+              api_key: '745520c85720709cfe436dfc35843432',
+              sort_by: 'release_date.desc',
+              'primary_release_date.gte': '2023-02-01',
+              'primary_release_date.lte': '2023-03-30',
+            },
+          }
+        );
+
+        setMovies(response.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getMovies();
+  }, []);
+
+  const handleViewDetails = (movie) => {
+    console.log(movie);
+    // Navigate to the details page
+  }
+
+  return (
+    <div className="new-releases-container">
+      <h1>New Releases</h1>
+      <div className="row row-cols-1 row-cols-md-3 g-4">
+        {movies.map((movie) => (
+          <div key={movie.id} className="col">
+            <Card>
+              {movie.poster_path && (
+                <Card.Img
+                  variant="top"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={`${movie.title} poster`}
+                />
+              )}
+              <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>
+                  Release Date: {movie.release_date}
+                </Card.Text>
+                <Button variant="primary" onClick={() => handleViewDetails(movie)}>View Details</Button>
+                <Link to={`/SeatSelection/${movie.id}`} className="btn btn-primary ms-2">Book Tickets</Link>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export { NewRelease };*/
+
 
 
 
